@@ -13,13 +13,17 @@ public class EmployeeClass {
     //*** Class Variables ***
     
     private static int nextID = 1000;
+    private static double otpay = 1.5;
     
     //*** Instance Variables ***
     
     private int id = 0;     // id number of employee
     private int hours = 0;  // number of hours worked by an employee
     private double wage = 0.0;  // wage of employee
-    
+    private double regularpay = 0.0;
+    private double overtimepay = 0.0;
+    private double ohours = 0.0;
+    private double grosspay = 0.0; 
     
     //*** Constructors ***
     
@@ -132,10 +136,62 @@ public class EmployeeClass {
         StringBuilder s = new StringBuilder();
         
         s.append(String.format("%-10s%10d%s", "Employee:", this.getId(), nl));
-        s.append(String.format("%-10s%10.3f%s", "Hours:", this.getHours(), nl));
-        s.append(String.format("%-10s%10.3f%s", "Hourly Wage:", this.getWage(), nl));
+        s.append(String.format("%-10s%10d%s", "Hours:", this.getHours(), nl));
+        s.append(String.format("%-10s%10.2f%s", "Hourly Wage:", this.getWage(), nl));
+        s.append(String.format("%-10s%10.2f%s", "Regular Pay:", this.getRegularPay(), nl));
+        s.append(String.format("%-10s%10.2f%s", "Overtime Pay:", this.getOvertimePay(), nl));
+        s.append(String.format("%-10s%10.2f%s", "Gross Pay:", this.getGrossPay(), nl));
         
         return s.toString();
     }// end toString
+    
+    // calculations 
+    
+    /*****************************************
+     * Description: get Regular Pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Regular Pay
+     * ****************************************/
+    public double getRegularPay(){
+        if(hours <= 40){
+            regularpay = wage * hours;
+        }
+        else{
+            regularpay = wage * 40;
+        }
+        return regularpay;
+    }// end getReguarPay
+    
+    /*****************************************
+     * Description: get Overtime pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Overtime pay
+     * ****************************************/
+    public double getOvertimePay(){
+        if(hours > 40){
+            ohours = hours - 40;
+            overtimepay = wage * ohours * otpay;
+        }
+        else{
+            overtimepay = 0;
+        }
+        return overtimepay;
+    }// end getOvertimePay
+    
+    /*****************************************
+     * Description: get Gross pay
+     * 
+     * Interface:
+     * 
+     * @return       double: Gross pay
+     * ****************************************/
+    public double getGrossPay(){
+        grosspay = regularpay + overtimepay; 
+        return grosspay;
+    }// end getOvertimePay
     
 } // end of public class

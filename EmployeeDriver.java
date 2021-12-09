@@ -2,7 +2,7 @@ import java.util.Scanner;
 import javax.swing.*;
 import java.io.*;
 import java.text.NumberFormat;
-
+import java.util.ArrayList;
 /** ***************************************************
  *  Name:           Prempreet
  *  Class:          CS30S
@@ -34,6 +34,8 @@ public class EmployeeDriver {
     
     // ***** objects *****
     
+        ArrayList<EmployeeClass> employeeclass = new ArrayList<>();
+    
         //Scanner scanner = new Scanner(System.in);
         //NumberFormat currency = NumberFormat.getCurrencyInstance();
         
@@ -61,6 +63,24 @@ public class EmployeeDriver {
     
     // ***** Main Processing *****
     
+        employeeclass.add(new EmployeeClass(35, 12.50));
+        employeeclass.add(new EmployeeClass(40, 17.25));
+        employeeclass.add(new EmployeeClass(45, 12.50));
+        employeeclass.add(new EmployeeClass(40, 25.00));
+        employeeclass.add(new EmployeeClass(46, 20.00));
+        employeeclass.add(new EmployeeClass(21, 18.75));
+        employeeclass.add(new EmployeeClass(48, 15.50));
+        employeeclass.add(new EmployeeClass(40, 32.75));
+        employeeclass.add(new EmployeeClass(41, 30.00));
+    
+        for(EmployeeClass e: employeeclass)
+            System.out.println(e.toString());
+            
+        System.out.println("-------------"); 
+        employeeclass.get(1).setHours(20); 
+        employeeclass.get(1).setWage(20.00);
+        System.out.println(employeeclass.get(1).toString());
+        
     // ***** Print Formatted Output *****
     
     // ***** Closing Message *****
